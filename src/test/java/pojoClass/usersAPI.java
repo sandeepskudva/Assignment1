@@ -1,4 +1,4 @@
-package APIinfo;
+package pojoClass;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;

@@ -1,28 +1,20 @@
-package tests;
+package commonFunctions;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
-
+import static io.restassured.RestAssured.*;
 import java.util.Arrays;
 import java.util.List;
-
-import org.testng.annotations.Test;
-
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import pojoClass.usersAPI;
-import pojoClass.usersPOJO;
+import pojoClass.*;
 
-public class testcases {
-	usersAPI users = new usersAPI();
+public class Logic {
+
 	
-	@Test
-	public void getUserid()
+	public int getUserid(String username)
 	{
 		baseURI = "https://jsonplaceholder.typicode.com";
 		
-		String username = "Samantha";	
+		
 		int userid=0;
 		
 		Response response = given().contentType(ContentType.JSON).when().get("/users");
@@ -34,12 +26,12 @@ public class testcases {
 		{
 			if(pojo.get(i).getUsername().equals(username))
 				userid=pojo.get(i).getId();	
-		}
-			
-		assertEquals(response.getStatusCode(),200);
+		}		
 		
-		System.out.println("Userid for "+username+" is "+userid);
 		
+		return userid;	
 	}	
-
+	
+		
+	
 }

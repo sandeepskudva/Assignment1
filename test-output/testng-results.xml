@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-10-14T20:44:11 IST" name="Default suite" finished-at="2021-10-14T20:44:14 IST" duration-ms="2876">
+  <suite started-at="2021-10-15T19:51:18 IST" name="Default suite" finished-at="2021-10-15T19:51:21 IST" duration-ms="2489">
     <groups>
     </groups>
-    <test started-at="2021-10-14T20:44:11 IST" name="Default test" finished-at="2021-10-14T20:44:14 IST" duration-ms="2876">
+    <test started-at="2021-10-15T19:51:18 IST" name="Default test" finished-at="2021-10-15T19:51:21 IST" duration-ms="2489">
       <class name="tests.testcases">
-        <test-method signature="getUserid()[pri:0, instance:tests.testcases@1ed1993a]" started-at="2021-10-14T20:44:11 IST" name="getUserid" finished-at="2021-10-14T20:44:14 IST" duration-ms="2845" status="PASS">
+        <test-method signature="getUserid()[pri:0, instance:tests.testcases@20d28811]" started-at="2021-10-15T19:51:18 IST" name="getUserid" finished-at="2021-10-15T19:51:21 IST" duration-ms="2448" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getUserid -->
