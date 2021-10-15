@@ -9,13 +9,13 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
+import commonFunctions.Logic;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import pojoClass.usersAPI;
 import pojoClass.usersPOJO;
 
 public class testcases {
-	usersAPI users = new usersAPI();
+	Logic L = new Logic();
 	
 	@Test
 	public void getUserid()
