@@ -1,45 +1,29 @@
 package tests;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import commonFunctions.Logic;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import pojoClass.usersPOJO;
+
 
 public class testcases {
 	Logic L = new Logic();
-	
+
+	// Test to verify email address entered in the comments section by user Samantha is in Proper format or not
 	@Test
-	public void getUserid()
-	{
-		baseURI = "https://jsonplaceholder.typicode.com";
-		
-		String username = "Samantha";	
-		int userid=0;
-		
-		Response response = given().contentType(ContentType.JSON).when().get("/users");
-		
-		List<usersPOJO> pojo=Arrays.asList(response.getBody().as(usersPOJO[].class));
-		
-				
-		for(int i=0;i<pojo.size();i++)
-		{
-			if(pojo.get(i).getUsername().equals(username))
-				userid=pojo.get(i).getId();	
+	public void validAllUseremails() {
+		String username = "Samantha";
+		int userid = L.getUserid(username);
+		System.out.println("User id for " + username + " is " + userid);
+		List<Integer> posts = L.getPostfromUser(userid);
+		System.out.println("Posts writen by user " + username + "(" + userid + ")" + " are " + posts);
+		List<String> emailids = new ArrayList<String>();
+		for (int i = 0; i < posts.size(); i++) {
+			emailids = L.getEmailids(posts.get(i));
+			System.out.println("Email validation for Comments in Postid " + posts.get(i));
+			System.out.println(L.validateEmailList(emailids));
+			System.out.println("------------------------------------------------------------------------------------------------");
 		}
-			
-		assertEquals(response.getStatusCode(),200);
-		
-		System.out.println("Userid for "+username+" is "+userid);
-		
-	}	
+	}
 
 }
