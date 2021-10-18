@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.testng.Assert;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import pojoClass.commentsPOJO;
@@ -32,7 +33,9 @@ public class Logic {
 				userid = pojo.get(i).getId();
 		}
 
-		return userid;
+		Assert.assertEquals(response.getStatusCode(), 200, "Correct status code returned");
+		
+		return userid;	
 	}
 
 	public List<Integer> getPostfromUser(int userid) {
@@ -49,7 +52,9 @@ public class Logic {
 		for (int i = 0; i < postpojo.size(); i++) {
 			id.add(postpojo.get(i).getId());
 		}
-
+		
+		Assert.assertEquals(response.getStatusCode(), 200, "Correct status code returned");
+		
 		return id;
 
 	}
@@ -70,6 +75,8 @@ public class Logic {
 			emailid.add(pojo.get(i).getEmail());
 		}
 
+		Assert.assertEquals(response.getStatusCode(), 200, "Correct status code returned");
+		
 		return emailid;
 
 	}
@@ -89,15 +96,30 @@ public class Logic {
 
 	}
 
-	public Map<String, String> validateEmailList(List<String> emailds) {
+	public Map<String, String> validateEmailList(List<String> emailds,int Postid) {
 
 		Map<String, String> emailValResult = new HashMap<String, String>();
+		int j=0;
 
 		for (int i = 0; i < emailds.size(); i++) {
+						
 			emailValResult.put(emailds.get(i), isValidEmail(emailds.get(i)));
+					
+			if(isValidEmail(emailds.get(i)).equals("NOT VALID"))
+			{
+				System.out.println("Invalid email id is "+emailds.get(i));
+				j++;
+			}
+			
+			
 		}
+		if(j==0)
+			System.out.println("All emailids are valid for postid :"+Postid);
 
 		return emailValResult;
 	}
-
-}
+}	
+	
+	
+	
+	
